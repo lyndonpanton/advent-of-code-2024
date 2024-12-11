@@ -54,6 +54,8 @@ So, in this example, `2` reports are **safe**.
 
 Analyze the unusual data from the engineers. **How many reports are safe**?
 
+To being, [get your puzzle input](https://adventofcode.com/2024/day/2/input).
+
 ## Credits
 
 - [Challenge brief](https://adventofcode.com/2024/day/2)

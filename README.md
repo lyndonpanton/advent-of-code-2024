@@ -9,10 +9,10 @@ Christmas holiday season.
 
 - Day 1:
     - Part 1: 2166959
-    - Part 2: 
+    - Part 2:
 - Day 2:
-    - Part 1:
-    - Part 2: 411
+    - Part 1: 411
+    - Part 2:
 - Day 3:
     - Part 1:
     - Part 2:

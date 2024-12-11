@@ -36,6 +36,11 @@ you add up all of the results of the multiplications?**
 
 To begin, [get your puzzle input](https://adventofcode.com/2024/day/3/input).
 
+## References
+
+- [How to capture all instances with regex from a string with | Stack Overflow](https://stackoverflow.com/questions/59457435/how-to-capture-all-instances-with-regex-from-a-string-with)
+- [Regular Expression for matching parentheses | Stack Overflow](https://stackoverflow.com/questions/5633533/regular-expression-for-matching-parentheses)
+
 ## Credits
 
 - [Challenge brief](https://adventofcode.com/2024/day/3)

@@ -39,7 +39,7 @@ Maybe you can help The Historians reconcile their lists?
 
 For example:
 
-```bash
+```text
 3   4
 4   3
 2   5
@@ -81,3 +81,7 @@ Your actual left and right lists contain many location IDs. **What is the total
 distance between your lists**?
 
 To begin, [get your puzzle input](https://adventofcode.com/2024/day/1/input).
+
+## Credits
+
+- [Challenge brief](https://adventofcode.com/2024/day/1)

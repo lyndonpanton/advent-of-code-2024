@@ -14,17 +14,94 @@ public class Main {
                 "./src/day_4_ceres_search/input.txt"
         );
 
-        for (String row: rows) {
-            System.out.println(row);
-        }
-
         int occurrencesOfXMas = getWordOccurrences(rows, "xmas");
+
+        System.out.println(occurrencesOfXMas);
     }
 
     public static int getWordOccurrences(List<String> rows, String word) {
+        int occurrencesOfXMas = 0;
 
+        for (int i = 0; i < rows.size(); i++) {
+            for (int j = 0; j < rows.get(i).length(); j++) {
+                if (rows.get(i).charAt(j) == 'x') {
+                    boolean canCheckLeft = false;
+                    boolean canCheckRight = false;
+                    boolean canCheckDown = false;
+                    boolean canCheckUp = false;
 
-        return 0;
+                    // Can check left
+                    if (j >= word.length() - 1) {
+                        canCheckLeft = true;
+
+                        if (
+                                rows.get(i).charAt(j - 1) == 'm'
+                                    && rows.get(i).charAt(j - 2) == 'a'
+                                    && rows.get(i).charAt(j - 3) == 's'
+                        ) {
+                            occurrencesOfXMas++;
+                        }
+                    }
+
+                    // Can check right
+                    if (j < rows.size() - word.length()) {
+                        canCheckRight = true;
+
+                        if (
+                                rows.get(i).charAt(j + 1) == 'm'
+                                    && rows.get(i).charAt(j + 2) == 'a'
+                                    && rows.get(i).charAt(j + 3) == 's'
+                        ) {
+                            occurrencesOfXMas++;
+                        }
+                    }
+
+                    // Can check down
+                    if (i < rows.size() - word.length()) {
+                        canCheckDown = true;
+
+                        if (
+                                rows.get(i + 1).charAt(j) == 'm'
+                                    && rows.get(i + 2).charAt(j) == 'a'
+                                    && rows.get(i + 3).charAt(j) == 's'
+                        ) {
+                            occurrencesOfXMas++;
+                        }
+                    }
+
+                    // Can check up
+                    if (i >= word.length() - 1) {
+                        canCheckUp = true;
+
+                        if (
+                                rows.get(i - 1).charAt(j) == 'M'
+                                        && rows.get(i - 2).charAt(j) == 'A'
+                                        && rows.get(i - 3).charAt(j) == 'S'
+                        ) {
+                            occurrencesOfXMas++;
+                        }
+                    }
+
+                    if (canCheckLeft && canCheckDown) {
+
+                    }
+
+                    if (canCheckLeft && canCheckUp) {
+
+                    }
+
+                    if (canCheckRight && canCheckDown) {
+
+                    }
+
+                    if (canCheckRight && canCheckUp) {
+
+                    }
+                }
+            }
+        }
+
+        return occurrencesOfXMas;
     }
 
     public static List<String> getWordsearch(String filename) {

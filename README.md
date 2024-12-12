@@ -16,6 +16,9 @@ Christmas holiday season.
 - Day 3:
     - Part 1: 190604937
     - Part 2:
+- Day 4:
+    - Part 1: 2654
+    - Part 2:
 
 ## Credits
 

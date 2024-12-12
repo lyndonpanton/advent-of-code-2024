@@ -8,13 +8,11 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello Advent of Code 2024!");
-
         List<String> rows = getWordsearch(
                 "./src/day_4_ceres_search/input.txt"
         );
 
-        int occurrencesOfXMas = getWordOccurrences(rows, "xmas");
+        int occurrencesOfXMas = getWordOccurrences(rows, "XMAS");
 
         System.out.println(occurrencesOfXMas);
     }
@@ -24,78 +22,102 @@ public class Main {
 
         for (int i = 0; i < rows.size(); i++) {
             for (int j = 0; j < rows.get(i).length(); j++) {
-                if (rows.get(i).charAt(j) == 'x') {
+                if (rows.get(i).charAt(j) == 'X') {
                     boolean canCheckLeft = false;
                     boolean canCheckRight = false;
                     boolean canCheckDown = false;
                     boolean canCheckUp = false;
 
                     // Can check left
-                    if (j >= word.length() - 1) {
+                    if (j >= (word.length() - 1)) {
                         canCheckLeft = true;
 
                         if (
-                                rows.get(i).charAt(j - 1) == 'm'
-                                    && rows.get(i).charAt(j - 2) == 'a'
-                                    && rows.get(i).charAt(j - 3) == 's'
+                                rows.get(i).charAt(j - 1) == 'M'
+                                    && rows.get(i).charAt(j - 2) == 'A'
+                                    && rows.get(i).charAt(j - 3) == 'S'
                         ) {
                             occurrencesOfXMas++;
                         }
                     }
 
                     // Can check right
-                    if (j < rows.size() - word.length()) {
+                    if (j < rows.size() - (word.length() - 1)) {
                         canCheckRight = true;
 
                         if (
-                                rows.get(i).charAt(j + 1) == 'm'
-                                    && rows.get(i).charAt(j + 2) == 'a'
-                                    && rows.get(i).charAt(j + 3) == 's'
+                                rows.get(i).charAt(j + 1) == 'M'
+                                    && rows.get(i).charAt(j + 2) == 'A'
+                                    && rows.get(i).charAt(j + 3) == 'S'
                         ) {
                             occurrencesOfXMas++;
                         }
                     }
 
                     // Can check down
-                    if (i < rows.size() - word.length()) {
+                    if (i < rows.size() - (word.length() - 1)) {
                         canCheckDown = true;
 
                         if (
-                                rows.get(i + 1).charAt(j) == 'm'
-                                    && rows.get(i + 2).charAt(j) == 'a'
-                                    && rows.get(i + 3).charAt(j) == 's'
+                                rows.get(i + 1).charAt(j) == 'M'
+                                    && rows.get(i + 2).charAt(j) == 'A'
+                                    && rows.get(i + 3).charAt(j) == 'S'
                         ) {
                             occurrencesOfXMas++;
                         }
                     }
 
                     // Can check up
-                    if (i >= word.length() - 1) {
+                    if (i >= (word.length() - 1)) {
                         canCheckUp = true;
 
                         if (
                                 rows.get(i - 1).charAt(j) == 'M'
-                                        && rows.get(i - 2).charAt(j) == 'A'
-                                        && rows.get(i - 3).charAt(j) == 'S'
+                                    && rows.get(i - 2).charAt(j) == 'A'
+                                    && rows.get(i - 3).charAt(j) == 'S'
                         ) {
                             occurrencesOfXMas++;
                         }
                     }
 
                     if (canCheckLeft && canCheckDown) {
-
+                        if (
+                                rows.get(i + 1).charAt(j - 1) == 'M'
+                                    && rows.get(i + 2).charAt(j - 2) == 'A'
+                                    && rows.get(i + 3).charAt(j - 3) == 'S'
+                        ) {
+                            occurrencesOfXMas++;
+                        }
                     }
 
                     if (canCheckLeft && canCheckUp) {
-
+                        if (
+                                rows.get(i - 1).charAt(j - 1) == 'M'
+                                    && rows.get(i - 2).charAt(j - 2) == 'A'
+                                    && rows.get(i - 3).charAt(j - 3) == 'S'
+                        ) {
+                            occurrencesOfXMas++;
+                        }
                     }
 
                     if (canCheckRight && canCheckDown) {
-
+                        if (
+                                rows.get(i + 1).charAt(j + 1) == 'M'
+                                    && rows.get(i + 2).charAt(j + 2) == 'A'
+                                    && rows.get(i + 3).charAt(j + 3) == 'S'
+                        ) {
+                            occurrencesOfXMas++;
+                        }
                     }
 
                     if (canCheckRight && canCheckUp) {
-
+                        if (
+                                rows.get(i - 1).charAt(j + 1) == 'M'
+                                    && rows.get(i - 2).charAt(j + 2) == 'A'
+                                    && rows.get(i - 3).charAt(j + 3) == 'S'
+                        ) {
+                            occurrencesOfXMas++;
+                        }
                     }
                 }
             }
@@ -113,7 +135,7 @@ public class Main {
             String line = br.readLine();
 
             while (line != null) {
-                rows.add(line.toLowerCase());
+                rows.add(line);
 
                 line = br.readLine();
             }

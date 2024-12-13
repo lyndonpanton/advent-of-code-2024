@@ -21,6 +21,7 @@ public class Main {
 
     public static int getDistinctLocations(List<String> map, Guard guard) {
         char newLocationIcon = '.';
+        char visitedLocationIcon = 'X';
         char obstacleIcon = '#';
 
         int locations = 1;
@@ -72,12 +73,18 @@ public class Main {
                                     .charAt(guard.getLocation()[1])
                             == newLocationIcon) {
                         locations++;
+
+                        String newRow = map.get(guard.getLocation()[0]);
+                        newRow =
+                                newRow.substring(0, guard.getLocation()[1])
+                                + visitedLocationIcon
+                                + newRow.substring(guard.getLocation()[1] + 1);
+                        map.set(guard.getLocation()[0], newRow);
                     }
                 }
 
             } else if (guard.getDirection() == GuardDirection.Right) {
                 if (currentLocationY + 1 > map.size() - 1) {
-//                    isInsideMap = false;
                     break;
                 }
 
@@ -94,6 +101,13 @@ public class Main {
                                     .charAt(guard.getLocation()[1])
                             == newLocationIcon) {
                         locations++;
+
+                        String newRow = map.get(guard.getLocation()[0]);
+                        newRow =
+                                newRow.substring(0, guard.getLocation()[1])
+                                        + visitedLocationIcon
+                                        + newRow.substring(guard.getLocation()[1] + 1);
+                        map.set(guard.getLocation()[0], newRow);
                     }
                 }
             } else if (guard.getDirection() == GuardDirection.Down) {
@@ -114,6 +128,13 @@ public class Main {
                                     .charAt(guard.getLocation()[1])
                             == newLocationIcon) {
                         locations++;
+
+                        String newRow = map.get(guard.getLocation()[0]);
+                        newRow =
+                                newRow.substring(0, guard.getLocation()[1])
+                                + visitedLocationIcon
+                                + newRow.substring(guard.getLocation()[1] + 1);
+                        map.set(guard.getLocation()[0], newRow);
                     }
                 }
             } else {
@@ -134,6 +155,13 @@ public class Main {
                                     .charAt(guard.getLocation()[1])
                             == newLocationIcon) {
                         locations++;
+
+                        String newRow = map.get(guard.getLocation()[0]);
+                        newRow =
+                                newRow.substring(0, guard.getLocation()[1])
+                                + visitedLocationIcon
+                                + newRow.substring(guard.getLocation()[1] + 1);
+                        map.set(guard.getLocation()[0], newRow);
                     }
                 }
             }

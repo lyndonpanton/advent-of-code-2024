@@ -23,7 +23,7 @@ Christmas holiday season.
     - Part 1: 6260
     - Part 2: 
 - Day 6:
-    - Part 1:
+    - Part 1: 5318
     - Part 2:
 
 ## Credits

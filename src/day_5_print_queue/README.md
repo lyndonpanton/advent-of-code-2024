@@ -116,3 +116,9 @@ Determine which updates are already in the correct order. **What do you get if
 you add up the middle page number from those correctly-ordered updates?**
 
 To begin, [get your puzzle input](https://adventofcode.com/2024/day/5/input).
+
+## References
+
+## Credits
+
+- [Challenge brief](https://adventofcode.com/2024/day/5)

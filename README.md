@@ -2,7 +2,7 @@
 
 ## Description
 
-A collections of challenges made by Eric Wastl to complete during the 2024
+A collection of challenges made by Eric Wastl to complete during the 2024
 Christmas holiday season.
 
 ## Answers

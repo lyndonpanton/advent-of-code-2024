@@ -15,10 +15,7 @@ public class Main {
         // Dividing line is blank
 
         List<List<Integer>> pageOrderingRules = getPageOrderingRules(filePath);
-
-        for (List<Integer> rule: pageOrderingRules) {
-            System.out.println(rule.get(0) + " and " + rule.get(1));
-        }
+        List<List<Integer>> pageUpdates = getPageUpdates(filePath);
     }
 
     public static List<List<Integer>> getPageOrderingRules(String file) {
@@ -68,9 +65,15 @@ public class Main {
             boolean blankLineFound = false;
 
             while (line != null) {
-
                 if (blankLineFound) {
+                    List<String> stringUpdates = List.of(line.split(","));
+                    List<Integer> intUpdates = new ArrayList<>();
 
+                    for (String update: stringUpdates) {
+                        intUpdates.add(Integer.parseInt(update));
+                    }
+
+                    updates.add(intUpdates);
                 } else if (Objects.equals(line, "")) {
                     blankLineFound = true;
                 }

@@ -10,32 +10,34 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello Advent of Code 2024!");
+
         List<String> map = getMapInformation("./src/day_6_guard_gallivant/input.txt");
         List<Character> guardIcons = Arrays.asList('^', '>', 'v', '<');
         Guard guardInformation = getGuardInformation(map, guardIcons);
         int distinctLocations = getDistinctLocations(map, guardInformation);
+
+        System.out.println(distinctLocations);
     }
 
     public static int getDistinctLocations(List<String> map, Guard guard) {
-
-//        System.out.println("Guard location: "
-//                + "("
-//                + guard.getLocation()[0] + ", " + guard.getLocation()[1]
-//                + ")"
-//        );
-//
-//        System.out.println("Guard direction: " + guard.getDirection());
-
-        int locations = 0;
         char newLocationIcon = '.';
-        char oldLocationIcon = 'X';
         char obstacleIcon = '#';
+
+        int locations = 1;
         boolean isInsideMap = true;
 
         while (isInsideMap) {
             int currentLocationX = guard.getLocation()[0];
             int currentLocationY = guard.getLocation()[1];
             char nextLocationIcon;
+
+            System.out.println(
+                    "Current location: " + currentLocationX + ", "
+                            + currentLocationY
+            );
+
+            System.out.println("Current direction: " + guard.getDirection());
+            System.out.println("Distinct locations: " + locations);
 
             /*
                 Process:
@@ -49,45 +51,90 @@ public class Main {
              */
 
             if (guard.getDirection() == GuardDirection.Up) {
-                nextLocationIcon =
-                        map.get(currentLocationX - 1).charAt(currentLocationY);
                 // Check if the guard can go up (is there an obstacle above? is
                 // there the boundary of a map above?)
                 if (currentLocationX - 1 < 0) {
-                    isInsideMap = false;
-                } else if (nextLocationIcon == obstacleIcon) {
+                    break;
+                }
+
+                nextLocationIcon =
+                        map.get(currentLocationX - 1).charAt(currentLocationY);
+
+                if (nextLocationIcon == obstacleIcon) {
                     guard.setDirection(GuardDirection.Right);
                 } else {
                     // Move onto the next location
-
-
+                    guard.setLocation(currentLocationX - 1, currentLocationY);
                     // If statement to see if it is a new location, and change
                     // the location's icon if so
+                    if (
+                            map.get(guard.getLocation()[0])
+                                    .charAt(guard.getLocation()[1])
+                            == newLocationIcon) {
+                        locations++;
+                    }
                 }
 
             } else if (guard.getDirection() == GuardDirection.Right) {
+                if (currentLocationY + 1 > map.size() - 1) {
+//                    isInsideMap = false;
+                    break;
+                }
+
                 nextLocationIcon =
                         map.get(currentLocationX).charAt(currentLocationY + 1);
-                if (currentLocationY + 1 > map.size() - 1) {
-                    isInsideMap = false;
-                } else if (nextLocationIcon == obstacleIcon) {
+
+                if (nextLocationIcon == obstacleIcon) {
                     guard.setDirection(GuardDirection.Down);
+                } else {
+                    guard.setLocation(currentLocationX, currentLocationY + 1);
+
+                    if (
+                            map.get(guard.getLocation()[0])
+                                    .charAt(guard.getLocation()[1])
+                            == newLocationIcon) {
+                        locations++;
+                    }
                 }
             } else if (guard.getDirection() == GuardDirection.Down) {
-                nextLocationIcon =
-                        map.get(currentLocationX + 1).charAt(currentLocationY);
                 if (currentLocationX + 1 > map.size() - 1) {
                     isInsideMap = false;
-                } else if (nextLocationIcon == obstacleIcon) {
+                }
+
+                nextLocationIcon =
+                        map.get(currentLocationX + 1).charAt(currentLocationY);
+
+                if (nextLocationIcon == obstacleIcon) {
                     guard.setDirection(GuardDirection.Left);
+                } else {
+                    guard.setLocation(currentLocationX + 1, currentLocationY);
+
+                    if (
+                            map.get(guard.getLocation()[0])
+                                    .charAt(guard.getLocation()[1])
+                            == newLocationIcon) {
+                        locations++;
+                    }
                 }
             } else {
+                if (currentLocationY - 1 < 0) {
+                    break;
+                }
+
                 nextLocationIcon =
                         map.get(currentLocationX).charAt(currentLocationY - 1);
-                if (currentLocationY - 1 < 0) {
-                    isInsideMap = false;
-                } else if (nextLocationIcon == obstacleIcon) {
+
+                if (nextLocationIcon == obstacleIcon) {
                     guard.setDirection(GuardDirection.Up);
+                } else {
+                    guard.setLocation(currentLocationX, currentLocationY - 1);
+
+                    if (
+                            map.get(guard.getLocation()[0])
+                                    .charAt(guard.getLocation()[1])
+                            == newLocationIcon) {
+                        locations++;
+                    }
                 }
             }
         }

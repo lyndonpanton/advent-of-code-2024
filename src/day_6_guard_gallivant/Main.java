@@ -35,30 +35,59 @@ public class Main {
         while (isInsideMap) {
             int currentLocationX = guard.getLocation()[0];
             int currentLocationY = guard.getLocation()[1];
+            char nextLocationIcon;
+
+            /*
+                Process:
+                    1. Is the location the guard is trying to move into inside
+                    the mapped area? End the loop)
+                    2. Is there an obstacle on the location the guard is trying
+                    to move onto? Turn right
+                    3. Move onto the next location
+                        a. Has this location been visited? Increment the
+                        distinct locations variable
+             */
 
             if (guard.getDirection() == GuardDirection.Up) {
+                nextLocationIcon =
+                        map.get(currentLocationX - 1).charAt(currentLocationY);
                 // Check if the guard can go up (is there an obstacle above? is
                 // there the boundary of a map above?)
                 if (currentLocationX - 1 < 0) {
                     isInsideMap = false;
+                } else if (nextLocationIcon == obstacleIcon) {
+                    guard.setDirection(GuardDirection.Right);
+                } else {
+                    // Move onto the next location
+
+
+                    // If statement to see if it is a new location, and change
+                    // the location's icon if so
                 }
-//                char aboveIcon = map.get(current)
-//                switch ()
-//                if (map.get(currentLocationX - 1).charAt(currentLocationY) == ) {
-//
-//                }
 
             } else if (guard.getDirection() == GuardDirection.Right) {
+                nextLocationIcon =
+                        map.get(currentLocationX).charAt(currentLocationY + 1);
                 if (currentLocationY + 1 > map.size() - 1) {
                     isInsideMap = false;
+                } else if (nextLocationIcon == obstacleIcon) {
+                    guard.setDirection(GuardDirection.Down);
                 }
             } else if (guard.getDirection() == GuardDirection.Down) {
+                nextLocationIcon =
+                        map.get(currentLocationX + 1).charAt(currentLocationY);
                 if (currentLocationX + 1 > map.size() - 1) {
                     isInsideMap = false;
+                } else if (nextLocationIcon == obstacleIcon) {
+                    guard.setDirection(GuardDirection.Left);
                 }
             } else {
+                nextLocationIcon =
+                        map.get(currentLocationX).charAt(currentLocationY - 1);
                 if (currentLocationY - 1 < 0) {
                     isInsideMap = false;
+                } else if (nextLocationIcon == obstacleIcon) {
+                    guard.setDirection(GuardDirection.Up);
                 }
             }
         }
@@ -68,9 +97,6 @@ public class Main {
 
     public static Guard getGuardInformation(List<String> map, List<Character> icons) {
         Guard guard = new Guard();
-
-//        int[] currentGuardLocation = new int[2];
-        int currentGuardIcon = 0;
 
         for (int i = 0; i < map.size(); i++) {
             boolean guardFound = false;

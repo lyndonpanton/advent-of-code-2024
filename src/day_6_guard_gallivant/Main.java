@@ -11,25 +11,57 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello Advent of Code 2024!");
         List<String> map = getMapInformation("./src/day_6_guard_gallivant/input.txt");
-        int distinctLocations = getDistinctLocations(map);
+        List<Character> guardIcons = Arrays.asList('^', '>', 'v', '<');
+        Guard guardInformation = getGuardInformation(map, guardIcons);
+        int distinctLocations = getDistinctLocations(map, guardInformation);
     }
 
-    public static int getDistinctLocations(List<String> map) {
+    public static int getDistinctLocations(List<String> map, Guard guard) {
+
+//        System.out.println("Guard location: "
+//                + "("
+//                + guard.getLocation()[0] + ", " + guard.getLocation()[1]
+//                + ")"
+//        );
+//
+//        System.out.println("Guard direction: " + guard.getDirection());
+
         int locations = 0;
         char newLocationIcon = '.';
         char oldLocationIcon = 'X';
         char obstacleIcon = '#';
-        List<Character> guardIcons = Arrays.asList('^', '>', 'v', '<');
+        boolean isInsideMap = true;
 
-        Guard guard = getGuardInformation(map, guardIcons);
+        while (isInsideMap) {
+            int currentLocationX = guard.getLocation()[0];
+            int currentLocationY = guard.getLocation()[1];
 
-        System.out.println("Guard location: "
-                + "("
-                + guard.getLocation()[0] + ", " + guard.getLocation()[1]
-                + ")"
-        );
+            if (guard.getDirection() == GuardDirection.Up) {
+                // Check if the guard can go up (is there an obstacle above? is
+                // there the boundary of a map above?)
+                if (currentLocationX - 1 < 0) {
+                    isInsideMap = false;
+                }
+//                char aboveIcon = map.get(current)
+//                switch ()
+//                if (map.get(currentLocationX - 1).charAt(currentLocationY) == ) {
+//
+//                }
 
-        System.out.println("Guard direction: " + guard.getDirection());
+            } else if (guard.getDirection() == GuardDirection.Right) {
+                if (currentLocationY + 1 > map.size() - 1) {
+                    isInsideMap = false;
+                }
+            } else if (guard.getDirection() == GuardDirection.Down) {
+                if (currentLocationX + 1 > map.size() - 1) {
+                    isInsideMap = false;
+                }
+            } else {
+                if (currentLocationY - 1 < 0) {
+                    isInsideMap = false;
+                }
+            }
+        }
 
         return locations;
     }

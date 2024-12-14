@@ -90,6 +90,7 @@ public class Main {
 
     public static List<Integer> getValidTestValues(List<List<Long>> testValues) {
         List<Integer> validTestValues = new ArrayList<>();
+        long total = 0;
 
         for (List<Long> testValue: testValues) {
             long target = testValue.getFirst();
@@ -97,14 +98,31 @@ public class Main {
             List<List<Character>> operators =
                     getPossibleOperators(operands.size() - 1);
 
-            System.out.print("Target: " + target + ", ");
-            System.out.println("Operands: " + operands);
+//            System.out.print("Target: " + target + ", ");
+//            System.out.println("Operands: " + operands);
 
-            // Recursion?
-            for (int i = 0; i < operands.size() - 2; i++) {
+            for (List<Character> operatorGroup: operators) {
+                long result = operands.getFirst();
+                int currentOperandIndex = 1;
 
+                for (int i = 1; i < operatorGroup.size(); i++) {
+                    if (operatorGroup.get(i) == '+') {
+                        result += operands.get(currentOperandIndex);
+                    } else {
+                        result *= operands.get(currentOperandIndex);
+                    }
+
+                    currentOperandIndex++;
+                }
+
+                if (result == target) {
+                    total += result;
+                    break;
+                }
             }
         }
+
+        System.out.println(total);
 
         return validTestValues;
     }

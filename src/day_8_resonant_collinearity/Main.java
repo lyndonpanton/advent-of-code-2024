@@ -9,11 +9,12 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello Advent of Code 2024!");
-//        String filename = "./src/day_8_resonant_collinearity/input.txt";
-        String filename = "./src/day_8_resonant_collinearity/custom-input.txt";
+        String filename = "./src/day_8_resonant_collinearity/input.txt";
 
         List<String> cityAntennaMap = getCityAntennaMap(filename);
         int antiNodeCount = getAntiNodeCount(cityAntennaMap);
+
+        System.out.println(antiNodeCount);
     }
 
     public static int getAntiNodeCount(List<String> cityAntennaMap) {
@@ -57,18 +58,6 @@ public class Main {
                                 // antinode antinode can be placed at a desired
                                 // position
                                 if (antennaB == antennaA && i != i2 && j != j2) {
-//                                    System.out.println(
-//                                            "Node A position: "
-//                                                    + i
-//                                                    + ", "
-//                                                    + j
-//                                    );
-//                                    System.out.println(
-//                                            "Node B position: "
-//                                                    + i2
-//                                                    + ", "
-//                                                    + j2
-//                                    );
                                     // Do calculations to determine antinode
                                     // positions, if either are valid
                                     int[] antiNodeAPosition = new int[2];
@@ -87,56 +76,31 @@ public class Main {
                                     antiNodeBPosition[1] =
                                             j2 + antennaYDifference;
 
-                                    System.out.println(
-                                            "Anti node A position: "
-                                            + antiNodeAPosition[0]
-                                            + ", "
-                                            + antiNodeAPosition[1]
-                                    );
+                                    // Assuming all lines on the map are the
+                                    // same
+                                    if (
+                                            antiNodeAPosition[0] >= 0
+                                            && antiNodeAPosition[1] >= 0
+                                            && antiNodeBPosition[0] < antiNodeMap.getFirst().length()
+                                            && antiNodeBPosition[1] < antiNodeMap.getFirst().length()
+                                    ) {
+                                        String line1 = antiNodeMap.get(antiNodeAPosition[0]);
+                                        String line2 = antiNodeMap.get(antiNodeBPosition[0]);
 
-                                    System.out.println(
-                                            "Anti node B position: "
-                                                    + antiNodeBPosition[0]
-                                                    + ", "
-                                                    + antiNodeBPosition[1]
-                                    );
+                                        line1 =
+                                                line1.substring(0, antiNodeAPosition[1])
+                                                        + '#'
+                                                        + line1.substring(antiNodeAPosition[1] + 1);
 
-                                    String line1 = antiNodeMap.get(antiNodeAPosition[0]);
-                                    String line2 = antiNodeMap.get(antiNodeBPosition[0]);
+                                        line2 =
+                                                line2.substring(0, antiNodeBPosition[1])
+                                                        + '#'
+                                                        + line2.substring(antiNodeBPosition[1] + 1);
 
-                                    line1 =
-                                            line1.substring(0, antiNodeAPosition[1])
-                                            + '#'
-                                            + line1.substring(antiNodeAPosition[1] + 1);
-
-                                    line2 =
-                                            line2.substring(0, antiNodeBPosition[1])
-                                            + '#'
-                                            + line2.substring(antiNodeBPosition[1] + 1);
-
-                                    antiNodeMap.set(antiNodeAPosition[0], line1);
-                                    antiNodeMap.set(antiNodeBPosition[0], line2);
-
-                                    // Add check to see if the position of the
-                                    // antenna to be added is inside the
-                                    // boundary
-
-                                    /*
-                                        Referencing the second code block in
-                                        the problem brief...
-
-                                        n1: (3, 4)
-                                        n2: (5, 5)
-
-                                        xDifference: 2
-                                        yDifference: 1
-
-                                        a1: (1, 3)
-                                        a2: (7, 6)
-                                     */
-
-                                    // Mark the valid antinodes on the antinode
-                                    // map
+                                        antiNodeMap.set(antiNodeAPosition[0], line1);
+                                        antiNodeMap.set(antiNodeBPosition[0], line2);
+                                        count++;
+                                    }
                                 }
                             }
                         }

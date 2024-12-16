@@ -28,6 +28,12 @@ Christmas holiday season.
 - Day 7:
     - Part 1:
     - Part 2:
+- Day 8:
+    - Part 1:
+    - Part 2:
+- Day 9:
+    - Part 1:
+    - Part 2
 
 ## Credits
 

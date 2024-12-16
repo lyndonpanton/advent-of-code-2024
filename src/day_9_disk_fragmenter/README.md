@@ -89,3 +89,9 @@ resulting filesystem checksum?** (Be careful copy/pasting the input for this
 puzzle; it is a single, very long line.)
 
 To begin, [get your puzzle input](https://adventofcode.com/2024/day/9/input).
+
+## References
+
+## Credits
+
+- [Challenge brief](https://adventofcode.com/2024/day/9)

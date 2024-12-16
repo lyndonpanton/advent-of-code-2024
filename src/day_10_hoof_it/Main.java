@@ -13,13 +13,15 @@ public class Main {
         String filename = "./src/day_10_hoof_it/input.txt";
         
         List<List<Integer>> topologyMap = getTopologyMap(filename);
-        
-        for (List<Integer> row : topologyMap) {
-            for (Integer position: row) {
-                System.out.print(position + ",");
-            }
-            
-            System.out.println();
+        List<List<Integer>> trailHeadPositions =
+                getTrailHeadPositions(topologyMap);
+
+        for (List<Integer> trailHeadPosition : trailHeadPositions) {
+            System.out.print(
+                    "(" + trailHeadPosition.getFirst()
+                    + ", " + trailHeadPosition.get(1)
+                    + "), "
+            );
         }
     }
 
@@ -49,5 +51,23 @@ public class Main {
         }
 
         return map;
+    }
+
+    public static List<List<Integer>> getTrailHeadPositions(List<List<Integer>> topologyMap) {
+        List<List<Integer>> positions = new ArrayList<>();
+
+        for (int i = 0; i < topologyMap.size(); i++) {
+            for (int j = 0; j < topologyMap.get(i).size(); j++) {
+                if (topologyMap.get(i).get(j) == 0) {
+                    List<Integer> position = new ArrayList<>();
+                    position.add(i);
+                    position.add(j);
+
+                    positions.add(position);
+                }
+            }
+        }
+
+        return positions;
     }
 }

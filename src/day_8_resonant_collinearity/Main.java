@@ -63,42 +63,58 @@ public class Main {
                                     int[] antiNodeAPosition = new int[2];
                                     int[] antiNodeBPosition = new int[2];
 
-                                    int antennaXDifference = Math.abs(i - i2);
-                                    int antennaYDifference = Math.abs(j - j2);
+                                    int antennaYDifference = Math.abs(i - i2);
+                                    int antennaXDifference = Math.abs(j - j2);
 
                                     antiNodeAPosition[0] =
-                                            i - antennaXDifference;
+                                            j - antennaXDifference;
                                     antiNodeAPosition[1] =
-                                            j - antennaYDifference;
+                                            i - antennaYDifference;
 
                                     antiNodeBPosition[0] =
-                                            i2 + antennaXDifference;
+                                            j2 + antennaXDifference;
                                     antiNodeBPosition[1] =
-                                            j2 + antennaYDifference;
+                                            i2 + antennaYDifference;
 
                                     // Assuming all lines on the map are the
-                                    // same
+                                    // same length
+
+                                    /*
+                                        i == y so [0] == y
+                                        j == x so [1] == x
+                                     */
+
                                     if (
-                                            antiNodeAPosition[0] >= 0
-                                            && antiNodeAPosition[1] >= 0
-                                            && antiNodeBPosition[0] < antiNodeMap.getFirst().length()
-                                            && antiNodeBPosition[1] < antiNodeMap.getFirst().length()
+                                            (antiNodeAPosition[0] >= 0
+                                                    && antiNodeAPosition[0]
+                                                    < antiNodeMap.getFirst().length())
+                                                    && (antiNodeAPosition[1] >= 0
+                                                    && antiNodeAPosition[1]
+                                                    < antiNodeMap.size())
                                     ) {
-                                        String line1 = antiNodeMap.get(antiNodeAPosition[0]);
-                                        String line2 = antiNodeMap.get(antiNodeBPosition[0]);
-
+                                        String line1 = antiNodeMap.get(antiNodeAPosition[1]);
                                         line1 =
-                                                line1.substring(0, antiNodeAPosition[1])
+                                                line1.substring(0, antiNodeAPosition[0])
                                                         + '#'
-                                                        + line1.substring(antiNodeAPosition[1] + 1);
+                                                        + line1.substring(antiNodeAPosition[0] + 1);
+                                        antiNodeMap.set(antiNodeAPosition[1], line1);
+                                        count++;
+                                    }
 
+                                    if (
+                                            (antiNodeBPosition[0] >= 0
+                                                    && antiNodeBPosition[0]
+                                                    < antiNodeMap.getFirst().length())
+                                                    && (antiNodeBPosition[1] >= 0
+                                                    && antiNodeBPosition[1]
+                                                    < antiNodeMap.getLast().length())
+                                    ) {
+                                        String line2 = antiNodeMap.get(antiNodeBPosition[1]);
                                         line2 =
-                                                line2.substring(0, antiNodeBPosition[1])
+                                                line2.substring(0, antiNodeBPosition[0])
                                                         + '#'
-                                                        + line2.substring(antiNodeBPosition[1] + 1);
-
-                                        antiNodeMap.set(antiNodeAPosition[0], line1);
-                                        antiNodeMap.set(antiNodeBPosition[0], line2);
+                                                        + line2.substring(antiNodeBPosition[0] + 1);
+                                        antiNodeMap.set(antiNodeBPosition[1], line2);
                                         count++;
                                     }
                                 }

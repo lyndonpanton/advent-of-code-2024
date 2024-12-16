@@ -12,12 +12,29 @@ public class Main {
         String filename = "./src/day_9_disk_fragmenter/input.txt";
         String diskMap = getDiskMap(filename);
         Map<Integer, Integer> idMap = getIDMap(diskMap);
+        Map<Integer, Integer> freeSpaceMap = getFreeSpaceMap(diskMap);
 
-        for (Map.Entry<Integer, Integer> entry: idMap.entrySet()) {
+        for (Map.Entry<Integer, Integer> entry: freeSpaceMap.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue());
         }
 
         // Use a boolean and keep switching between values when getting output
+    }
+
+    public static Map<Integer, Integer> getFreeSpaceMap(String diskMap) {
+        Map<Integer, Integer> map = new HashMap<>();
+
+        int j = 1;
+        int i = 0;
+
+        while (j < diskMap.length()) {
+            map.put(i, Integer.parseInt(String.valueOf(diskMap.charAt(j))));
+
+            j += 2;
+            i++;
+        }
+
+        return map;
     }
 
     public static String getDiskMap(String filename) {
@@ -43,6 +60,7 @@ public class Main {
 
         while (j < diskMap.length()) {
             map.put(i, Integer.parseInt(String.valueOf(diskMap.charAt(j))));
+
             j += 2;
             i++;
         }

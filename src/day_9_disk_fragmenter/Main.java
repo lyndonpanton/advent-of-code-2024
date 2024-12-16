@@ -24,9 +24,9 @@ public class Main {
                 freeSpaceCharacter
         );
 
-        System.out.println(individualBlockRepresentation);
+        String movedBlocks = getMovedBlocks(individualBlockRepresentation);
 
-        // Use a boolean and keep switching between values when getting output
+        System.out.println(individualBlockRepresentation);
     }
 
     public static String getDiskMap(String filename) {
@@ -97,5 +97,10 @@ public class Main {
         }
 
         return representation.toString();
+    }
+
+    public static String getMovedBlocks(String individualBlockRepresentation) {
+
+        return "";
     }
 }

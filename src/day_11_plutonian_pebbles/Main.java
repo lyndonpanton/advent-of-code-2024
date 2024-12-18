@@ -60,7 +60,6 @@ public class Main {
             while (j < initialStoneArrangement.size()) {
                 if (initialStoneArrangement.get(j) == 0) {
                     newStoneArrangement.add(1L);
-                    j++;
                 } else if (
                         String.valueOf(initialStoneArrangement.get(j)).length() % 2
                                 == 0) {
@@ -75,10 +74,11 @@ public class Main {
 
                     newStoneArrangement.add(left);
                     newStoneArrangement.add(right);
-                    j += 2;
                 } else {
-                    j++;
+
                 }
+
+                j++;
             }
 
             i++;

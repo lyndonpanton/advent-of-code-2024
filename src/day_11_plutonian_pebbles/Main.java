@@ -16,12 +16,6 @@ public class Main {
                 getStonesAfterBlinking(stoneArrangement, 25);
         int newStoneArrangementSize = newStoneArrangement.size();
 
-        for (Long stone: newStoneArrangement) {
-            System.out.print(stone + " ");
-        }
-
-        System.out.println();
-
         System.out.println(
                 "Stone arrangement length: " + newStoneArrangementSize
         );
@@ -50,17 +44,17 @@ public class Main {
     public static List<Long> getStonesAfterBlinking(
             List<Long> initialStoneArrangement, int numberOfBlinks
     ) {
-        List<Long> newStoneArrangement = new ArrayList<>();
-        
         for (int i = 0; i < numberOfBlinks; i++) {
-            for (long stone: initialStoneArrangement) {
-                if (stone == 0) {
-                    newStoneArrangement.add(1L);
+            int j = 0;
+
+            while (j < initialStoneArrangement.size()) {
+                if (initialStoneArrangement.get(j) == 0) {
+                    initialStoneArrangement.set(j, 1L);
                 } else if (
-                        String.valueOf(stone).length() % 2
+                        String.valueOf(initialStoneArrangement.get(j)).length() % 2
                                 == 0) {
                     String currentStone =
-                            String.valueOf(stone);
+                            String.valueOf(initialStoneArrangement.get(j));
                     String leftStone =
                             currentStone.substring(0, currentStone.length() / 2);
                     String rightStone =
@@ -69,14 +63,17 @@ public class Main {
                     long left = Integer.parseInt(leftStone);
                     long right = Integer.parseInt(rightStone);
 
-                    newStoneArrangement.add(left);
-                    newStoneArrangement.add(right);
+                    initialStoneArrangement.set(j, left);
+                    initialStoneArrangement.add(j + 1, right);
+                    j++;
                 } else {
-                    newStoneArrangement.add(stone * 2024);
+                    initialStoneArrangement.set(j, initialStoneArrangement.get(j) * 2024);
                 }
+
+                j++;
             }
         }
 
-        return newStoneArrangement;
+        return initialStoneArrangement;
     }
 }

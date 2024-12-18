@@ -51,37 +51,30 @@ public class Main {
             List<Long> initialStoneArrangement, int numberOfBlinks
     ) {
         List<Long> newStoneArrangement = new ArrayList<>();
-
-        int i = 0;
-
-        while (i < numberOfBlinks) {
-            int j = 0;
-
-            while (j < initialStoneArrangement.size()) {
-                if (initialStoneArrangement.get(j) == 0) {
+        
+        for (int i = 0; i < numberOfBlinks; i++) {
+            for (long stone: initialStoneArrangement) {
+                if (stone == 0) {
                     newStoneArrangement.add(1L);
                 } else if (
-                        String.valueOf(initialStoneArrangement.get(j)).length() % 2
+                        String.valueOf(stone).length() % 2
                                 == 0) {
                     String currentStone =
-                            String.valueOf(initialStoneArrangement.get(j));
+                            String.valueOf(stone);
                     String leftStone =
                             currentStone.substring(0, currentStone.length() / 2);
                     String rightStone =
                             currentStone.substring(currentStone.length() / 2);
+
                     long left = Integer.parseInt(leftStone);
                     long right = Integer.parseInt(rightStone);
 
                     newStoneArrangement.add(left);
                     newStoneArrangement.add(right);
                 } else {
-                    newStoneArrangement.add(initialStoneArrangement.get(j) * 2024);
+                    newStoneArrangement.add(stone * 2024);
                 }
-
-                j++;
             }
-
-            i++;
         }
 
         return newStoneArrangement;

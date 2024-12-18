@@ -12,13 +12,24 @@ public class Main {
         String filename = "./src/day_11_plutonian_pebbles/input.txt";
 
         List<Long> stoneArrangement = getInitialStoneArrangement(filename);
-        List<Long> newStoneArrangement =
+
+        List<Long> arrangementAfter25Blinks =
                 getStonesAfterBlinking(stoneArrangement, 25);
-        int newStoneArrangementSize = newStoneArrangement.size();
+//        List<Long> arrangementAfter75Blinks =
+//                getStonesAfterBlinking(stoneArrangement, 75);
+
+        int arrangementAfter25BlinksSize = arrangementAfter25Blinks.size();
+//        int arrangementAfter75BlinksSize = arrangementAfter75Blinks.size();
 
         System.out.println(
-                "Stone arrangement length: " + newStoneArrangementSize
+                "Stone arrangement length after 25 blinks: "
+                + arrangementAfter25BlinksSize
         );
+
+//        System.out.println(
+//                "Stone arrangement length after 75 blinks: "
+//                + arrangementAfter75BlinksSize
+//        );
     }
 
     public static List<Long> getInitialStoneArrangement(String file) {
@@ -71,6 +82,14 @@ public class Main {
                 }
 
                 j++;
+            }
+
+            System.out.print("Blinked " + (i + 1) + " time");
+
+            if (i == 0) {
+                System.out.println("!");
+            } else {
+                System.out.println("s!");
             }
         }
 

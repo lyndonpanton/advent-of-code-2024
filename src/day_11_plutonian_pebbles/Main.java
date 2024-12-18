@@ -75,7 +75,7 @@ public class Main {
                     newStoneArrangement.add(left);
                     newStoneArrangement.add(right);
                 } else {
-
+                    newStoneArrangement.add(initialStoneArrangement.get(j) * 2024);
                 }
 
                 j++;
